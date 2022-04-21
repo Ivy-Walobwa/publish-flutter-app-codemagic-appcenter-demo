@@ -1,4 +1,5 @@
 # counter_app
+[![Codemagic build status](https://api.codemagic.io/apps/62614885eb4a9ade4d72e9f4/62614885eb4a9ade4d72e9f3/status_badge.svg)](https://codemagic.io/apps/62614885eb4a9ade4d72e9f4/62614885eb4a9ade4d72e9f3/latest_build)
 
 A new Flutter application.
 
