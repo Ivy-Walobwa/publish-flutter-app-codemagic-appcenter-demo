@@ -3,15 +3,30 @@
 
 A new Flutter application.
 
-## Getting Started
+## Publishing to App Center
 
-This project is a starting point for a Flutter application.
+Additional script to be added to your Workflow editor between **build** and **publish** as a **post-build script**.
 
-A few resources to get you started if this is your first Flutter project:
+The script publishes app to app-center. 
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+echo 'Installing App Center CLI tools'
+npm install -g appcenter-cli
+echo "Publishing $aabPath to App Center"
+appcenter distribute release \
+    --group "Beta testers" \
+    --file $aabPath \
+    --release-notes 'App submission via Codemagic' \
+    --app ivywalobwa/Counter-App \
+    --token $APP_CENTER_TOKEN \
+    --quiet
+```  
+
+- `Beta testers` is the name of your group. 
+-  `$aabPath` is set as an environment variable in the workflow editor. It's the path to your .apk/.aab/.ipa artifacts. eg; build/app/outputs/bundle/release/app-release.aab
+-  `$APP_CENTER_TOKEN` is set as an environment variable in the workflow editor. It's the token obtained from user settings in App Center.
+-  `ivywalobwa/Counter-App` is username/appname. App name on app center should match android app name. 
+
+## Resources:
+[Publish app artifacts to App Center](https://docs.codemagic.io/knowledge-base/publish-app-artifacts-to-app-center/)
